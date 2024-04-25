@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
     },
 
     price: {
-        type: mongoose.Decimal128,
+        type:Number,
         required: [true, "Price is required"],
     },
 
@@ -23,8 +23,9 @@ const productSchema = new mongoose.Schema({
 
     images: [{
         name: String,
-        url: String,
-        contentType: String
+        contentType: String,
+        data: Buffer
+       
     }],
 
     gender: {
@@ -64,7 +65,7 @@ const productSchema = new mongoose.Schema({
                     value
                 );
             },
-            message: (props) => `Invalid size format!`,
+            message: (props) => 'Invalid size format!',
         },
         required: [true, "size is required!"]
     },
@@ -77,7 +78,6 @@ const productSchema = new mongoose.Schema({
 }, {
     timestamps: false, // Automatically manage createdAt and updatedAt fields
     versionKey:false
-   // timestamps: true // Automatically manage createdAt and updatedAt fields
 });
 
 const Product = mongoose.model('Product', productSchema);
